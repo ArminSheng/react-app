@@ -10,7 +10,7 @@ export default class Welcome extends Component {
     return (
       <div>
         Welcome, <span>{this.state.name}</span>
-        <div>{this.props.info}</div>
+        <p>{this.props.info}</p>
       </div>
     )
   }

@@ -1,22 +1,42 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Welcome from './components/Welcome'
+import React, {Component} from 'react'
+import AppBar from 'material-ui/AppBar'
+import IconButton from 'material-ui/IconButton'
 
-class App extends Component {
-  render() {
+import SidePanel from './components/SidePanel'
+
+// function handleClickTitle (e) {
+//   console.log(this, e)
+// }
+
+
+export default class App extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {s: 1}
+    // this.handleClickTitle = this.handleClickTitle.bind(this)
+  }
+
+  handleClickTitle = (e) => {
+    console.log(this.state.s, e)
+  };
+
+  render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React App</h1>
-        </header>
-        <p className="App-intro">
-          <Welcome info="How are you"/>
-        </p>
+      <div>
+        <AppBar
+          onTitleClick={this.handleClickTitle}
+          iconElementLeft={<IconButton iconClassName="muidocs-icon-custom-github" />}
+          title="计划板"
+        />
+          <div className="container">
+            <div className="left">
+              <SidePanel />
+            </div>
+            <div className="right">
+              <SidePanel />
+            </div>
+          </div>
       </div>
-    );
+    )
   }
 }
-
-export default App;
