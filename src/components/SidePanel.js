@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
+import Divider from 'material-ui/Divider'
 
 export default class SidePanel extends Component {
   constructor (props) {
@@ -11,6 +12,7 @@ export default class SidePanel extends Component {
     return (
       <Card>
         <CardHeader title="已有时长" />
+        <Divider />
         <CardText>
           <span>{this.state.duration} 小时</span>
         </CardText>

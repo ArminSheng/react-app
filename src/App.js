@@ -3,29 +3,22 @@ import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 
 import SidePanel from './components/SidePanel'
-
-// function handleClickTitle (e) {
-//   console.log(this, e)
-// }
-
+import TimeEntries from './pages/TimeEntries'
 
 export default class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {s: 1}
-    // this.handleClickTitle = this.handleClickTitle.bind(this)
-  }
-
-  handleClickTitle = (e) => {
-    console.log(this.state.s, e)
-  };
+  // constructor (props) {
+  //   super(props)
+  // }
 
   render () {
     return (
       <div>
         <AppBar
-          onTitleClick={this.handleClickTitle}
-          iconElementLeft={<IconButton iconClassName="muidocs-icon-custom-github" />}
+          iconElementLeft={
+            <IconButton
+              iconClassName="muidocs-icon-custom-github"
+            />
+          }
           title="计划板"
         />
           <div className="container">
@@ -33,7 +26,7 @@ export default class App extends Component {
               <SidePanel />
             </div>
             <div className="right">
-              <SidePanel />
+              <TimeEntries />
             </div>
           </div>
       </div>
