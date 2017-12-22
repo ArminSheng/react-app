@@ -20,10 +20,10 @@ const Header = () => {
     <div>
       <span>计划板</span>
       <FlatButton>
-        <Link to="/home" style={linkStyle}>首页</Link>
+        <Link to="home" style={linkStyle}>首页</Link>
       </FlatButton>
       <FlatButton>
-        <Link to="/time-entries" style={linkStyle}>计划列表</Link>
+        <Link to="time-entries" style={linkStyle}>计划列表</Link>
       </FlatButton>
     </div>
   )
