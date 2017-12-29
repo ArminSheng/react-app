@@ -6,14 +6,6 @@ import App from './App';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import SidePanel from './components/SidePanel'
 
-// const routes = [
-//   {
-//     path: '/',
-//     component: App,
-//     indexRoute: {component: SidePanel}
-//   }
-// ]
-
 ReactDOM.render((
   <MuiThemeProvider>
     <Router>
