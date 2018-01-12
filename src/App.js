@@ -7,7 +7,8 @@ import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 import SidePanel from './components/SidePanel'
 import TimeEntries from './pages/TimeEntries'
 import HomeCard from './components/HomeCard'
-import {Route, IndexRoute, Link} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const linkStyle = {
   marginLeft: 20,
@@ -32,12 +33,17 @@ const Header = () => {
 export default class App extends Component {
   render () {
     return (
-      <div>
-        <AppBar
-          iconElementLeft={<IconButton><AccessAlarmIcon /></IconButton>}
-          title={<Header />}
-        >
-        </AppBar>
+      <MuiThemeProvider>
+        <div>
+          <AppBar
+            iconElementLeft={
+              <IconButton>
+                <AccessAlarmIcon />
+              </IconButton>
+            }
+            title={<Header />}
+          >
+          </AppBar>
           <div className="container">
             <div className="left">
               <SidePanel />
@@ -47,7 +53,8 @@ export default class App extends Component {
               <Route path="/home" component={HomeCard} />
             </div>
           </div>
-      </div>
+        </div>
+      </MuiThemeProvider>
     )
   }
 }

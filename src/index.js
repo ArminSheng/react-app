@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route } from 'react-router-dom'
 import './index.css';
 import App from './App';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import SidePanel from './components/SidePanel'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import todoApp from './reducers/reducers'
+
+const store = createStore(todoApp)
 
 ReactDOM.render((
-  <MuiThemeProvider>
+  <Provider store={store}>
     <Router>
-      <Route path="/" component={App} />
+      <Route path="" component={App} />
     </Router>
-  </MuiThemeProvider>
+  </Provider>
  ), document.getElementById('root'));
