@@ -31,7 +31,7 @@ const initialState = {
       avatar
     },{
       name: 'Armin',
-      hour: 4,
+      hour: 9,
       date: '2017-12-12',
       note: '双十一抢购',
       avatar

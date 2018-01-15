@@ -1,22 +1,33 @@
 import React, {Component} from 'react'
 import {Card, CardHeader, CardText} from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
+import { connect } from 'react-redux'
+import { number } from 'prop-types'
 
-export default class SidePanel extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {duration: 10}
-  }
-
+class SidePanel extends Component {
   render () {
+    const {totalTime} = this.props
     return (
       <Card>
         <CardHeader title="已有时长" />
         <Divider />
         <CardText>
-          <span>{this.state.duration} 小时</span>
+          <span>{totalTime} 小时</span>
         </CardText>
       </Card>
     )
   }
+};
+
+SidePanel.propTypes = {
+  totalTime: number.isRequired
 }
+
+export default connect(state => {
+  const totalTime = state.todos
+    .reduce((sum, prev) => sum + prev.hour, 0)
+
+  return {
+    totalTime
+  }
+})(SidePanel)

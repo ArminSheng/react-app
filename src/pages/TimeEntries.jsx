@@ -11,9 +11,9 @@ const dividerStyle = {
 }
 
 class TimeEntries extends Component {
-  constructor () {
-    super()
-  }
+  // constructor () {
+  //   super()
+  // }
 
   onCreate (e) {
     console.log(e.preventDefault);
@@ -44,4 +44,8 @@ TimeEntries.propTypes = {
   }).isRequired).isRequired
 }
 
-export default connect(state => state)(TimeEntries)
+export default connect(state => {
+  return {
+    todos: state.todos
+  }
+})(TimeEntries)
