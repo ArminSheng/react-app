@@ -1,17 +1,17 @@
 import React, {Component} from 'react'
-import {Card, CardText, CardActions} from 'material-ui/Card'
-import RaisedButton from 'material-ui/RaisedButton'
+import Card, { CardContent } from 'material-ui/Card'
+import Button from 'material-ui/Button'
 
 export default class HomeCard extends Component {
   render () {
     return (
       <Card>
-        <CardText>
-          <h1>任务追踪</h1>
-        </CardText>
-        <CardText>
-          <RaisedButton label="创建一个任务" primary />
-        </CardText>
+        <CardContent>
+          <h1 type="headline">任务追踪</h1>
+          <Button raised color="primary">
+            创建一个任务
+          </Button>
+        </CardContent>
       </Card>
     )
   }

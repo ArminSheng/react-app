@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Card, CardHeader, CardText} from 'material-ui/Card'
+import Card, { CardContent } from 'material-ui/Card'
 import Divider from 'material-ui/Divider'
 import { connect } from 'react-redux'
 import { number } from 'prop-types'
@@ -9,11 +9,13 @@ class SidePanel extends Component {
     const {totalTime} = this.props
     return (
       <Card>
-        <CardHeader title="已有时长" />
-        <Divider />
-        <CardText>
+        <CardContent>
+          <div type="headline">
+            已有时长
+          </div>
+          <Divider />
           <span>{totalTime} 小时</span>
-        </CardText>
+        </CardContent>
       </Card>
     )
   }

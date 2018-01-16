@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {Card, CardHeader} from 'material-ui/Card'
+import Card, { CardHeader } from 'material-ui/Card'
+import Avatar from 'material-ui/Avatar';
 
 const style = {
   marginBottom: 15
@@ -14,9 +15,10 @@ export default class EntryList extends Component {
             <Card key={i} style={style}>
               <CardHeader
                 title={item.name}
-                subtitle={item.hour + ' 小时'}
-                avatar={item.avatar}
-                showExpandableButton={true}
+                subheader={item.hour + ' 小时'}
+                avatar={
+                  <Avatar src={item.avatar} />
+                }
               >
                 {item.note}
               </CardHeader>
