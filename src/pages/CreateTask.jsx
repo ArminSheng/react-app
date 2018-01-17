@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import {InputAdornment, IconButton} from 'material-ui'
 import Divider from 'material-ui/Divider'
 import TextField from 'material-ui/TextField'
+import { Button } from 'material-ui'
 import { DatePicker } from 'material-ui-pickers'
+import {Link} from 'react-router-dom'
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
   container: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -19,42 +24,44 @@ const styles = theme => ({
   dayWrapper: {
     position: 'relative',
   },
-  day: {
-    width: 36,
-    height: 36,
-    fontSize: theme.typography.caption.fontSize,
-    margin: '0 2px',
-    color: 'inherit',
-  },
-  customDayHighlight: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: '2px',
-    right: '2px',
-    border: `2px solid ${theme.palette.primary[100]}`,
-    borderRadius: '50%',
-  },
-  nonCurrentMonthDay: {
-    color: theme.palette.common.minBlack,
-  },
-  highlightNonCurrentMonthDay: {
-    color: '#676767',
-  },
-  highlight: {
-    background: theme.palette.primary[500],
-    color: theme.palette.common.white,
-  },
-  firstHighlight: {
-    extend: 'highlight',
-    borderTopLeftRadius: '50%',
-    borderBottomLeftRadius: '50%',
-  },
-  endHighlight: {
-    extend: 'highlight',
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-  },
+  datePicker: {
+    day: {
+      width: 36,
+      height: 36,
+      fontSize: theme.typography.caption.fontSize,
+      margin: '0 2px',
+      color: 'inherit',
+    },
+    customDayHighlight: {
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: '2px',
+      right: '2px',
+      border: `2px solid ${theme.palette.primary[100]}`,
+      borderRadius: '50%',
+    },
+    nonCurrentMonthDay: {
+      color: theme.palette.common.minBlack,
+    },
+    highlightNonCurrentMonthDay: {
+      color: '#676767',
+    },
+    highlight: {
+      background: theme.palette.primary[500],
+      color: theme.palette.common.white,
+    },
+    firstHighlight: {
+      extend: 'highlight',
+      borderTopLeftRadius: '50%',
+      borderBottomLeftRadius: '50%',
+    },
+    endHighlight: {
+      extend: 'highlight',
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+    },
+  }
 });
 
 class CreateTask extends Component {
@@ -79,8 +86,11 @@ class CreateTask extends Component {
     return (
       <form noValidate autoComplete="off">
         <h2>创建</h2>
+
         <Divider />
+
         <DatePicker
+          className="my-datepicker"
           disablePast
           label="日期"
           format="YYYY-MM-DD"
@@ -122,6 +132,19 @@ class CreateTask extends Component {
           fullWidth
           margin="normal"
         />
+
+        <Button raised color="primary">
+          保存
+        </Button>
+
+        <Button
+          style={{marginLeft: 8}}
+          component={Link}
+          replace
+          to="/time-entries"
+        >
+          取消
+        </Button>
       </form>
     )
   }

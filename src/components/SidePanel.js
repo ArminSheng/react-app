@@ -10,11 +10,11 @@ class SidePanel extends Component {
     return (
       <Card>
         <CardContent>
-          <div type="headline">
+          <p type="headline">
             已有时长
-          </div>
+          </p>
           <Divider />
-          <span>{totalTime} 小时</span>
+          <h2>{totalTime} 小时</h2>
         </CardContent>
       </Card>
     )

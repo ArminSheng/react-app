@@ -32,14 +32,14 @@ class TimeEntries extends Component {
 
 const CreateButton = () => {
   return (
-    <Link to="/time-entries/create">
-      <Button
-        raised
-        color="primary"
-      >
-        创建
-      </Button>
-    </Link>
+    <Button
+      raised
+      color="primary"
+      component={Link}
+      to="/time-entries/create"
+    >
+      创建
+    </Button>
   )
 }
 

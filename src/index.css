@@ -19,3 +19,7 @@ body {
 .right {
   width: 80%;
 }
+
+a.active-link {
+  color: #ccc;
+}

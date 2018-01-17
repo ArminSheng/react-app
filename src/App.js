@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import AppBar from 'material-ui/AppBar'
 import Button from 'material-ui/Button'
+import { Reboot } from 'material-ui'
 import IconButton from 'material-ui/IconButton'
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 import Toolbar from 'material-ui/Toolbar';
@@ -8,23 +9,28 @@ import Toolbar from 'material-ui/Toolbar';
 import SidePanel from './components/SidePanel'
 import TimeEntries from './pages/TimeEntries'
 import HomeCard from './components/HomeCard'
-import {Route, Link} from 'react-router-dom'
-
-const linkStyle = {
-  marginLeft: 20,
-  color: '#fff',
-  textDecoration: 'none'
-}
+import {Route, NavLink} from 'react-router-dom'
 
 const Header = () => {
   return (
     <div>
-      <span>计划板</span>
-      <Button>
-        <Link to="/" style={linkStyle}>首页</Link>
+      计划板
+      <Button
+        color="contrast"
+        component={NavLink}
+        exact
+        activeClassName="active-link"
+        to="/"
+      >
+        首页
       </Button>
-      <Button>
-        <Link to="/time-entries" style={linkStyle}>计划列表</Link>
+      <Button
+        color="contrast"
+        component={NavLink}
+        activeClassName="active-link"
+        to="/time-entries"
+      >
+        计划列表
       </Button>
     </div>
   )
@@ -34,9 +40,10 @@ export default class App extends Component {
   render () {
     return (
       <div>
+        <Reboot />
         <AppBar position="static">
           <Toolbar>
-            <IconButton>
+            <IconButton color="contrast">
               <AccessAlarmIcon />
             </IconButton>
             <Header type="title" />
