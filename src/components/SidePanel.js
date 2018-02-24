@@ -27,7 +27,7 @@ SidePanel.propTypes = {
 
 export default connect(state => {
   const totalTime = state.todos
-    .reduce((sum, prev) => sum + prev.hour, 0)
+    .reduce((sum, prev) => sum + +prev.hour, 0)
 
   return {
     totalTime

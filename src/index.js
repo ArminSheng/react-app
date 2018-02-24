@@ -3,11 +3,8 @@ import ReactDOM from 'react-dom';
 import {HashRouter as Router, Route } from 'react-router-dom'
 import './index.css';
 import App from './App';
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import todoApp from './reducers/reducers'
-
-const store = createStore(todoApp)
+import store from './reducers'
 
 ReactDOM.render((
   <Provider store={store}>

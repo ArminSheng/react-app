@@ -1,10 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
 import Button from 'material-ui/Button'
 import Divider from 'material-ui/Divider'
 import EntryList from '../components/EntryList'
 import CreateTask from './CreateTask'
-import { connect } from 'react-redux'
 import {Link, Route} from 'react-router-dom'
 
 const dividerStyle = {
@@ -12,23 +13,14 @@ const dividerStyle = {
   marginBottom: 15
 }
 
-class TimeEntries extends Component {
-  onCreate (e) {
-    console.log(e.preventDefault);
-  }
-
-  render () {
-    const {todos} = this.props
-    return (
-      <div>
-        <Route exact path="/time-entries" component={CreateButton} />
-        <Route path="/time-entries/create" component={CreateTask} />
-        <Divider style={dividerStyle} />
-        <EntryList list={todos} />
-      </div>
-    )
-  }
-}
+const TimeEntries = ({todos}) => (
+  <div>
+    <Route exact path="/time-entries" component={CreateButton} />
+    <Route path="/time-entries/create" component={CreateTask} />
+    <Divider style={dividerStyle} />
+    <EntryList list={todos} />
+  </div>
+)
 
 const CreateButton = () => {
   return (
@@ -53,8 +45,10 @@ TimeEntries.propTypes = {
   }).isRequired).isRequired
 }
 
-export default connect(state => {
+const mapState = (state) => {
   return {
     todos: state.todos
   }
-})(TimeEntries)
+}
+
+export default connect(mapState)(TimeEntries)

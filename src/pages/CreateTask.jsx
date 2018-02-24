@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import {InputAdornment, IconButton} from 'material-ui'
+import { connect } from 'react-redux'
+
+import {Link} from 'react-router-dom'
 import Divider from 'material-ui/Divider'
 import TextField from 'material-ui/TextField'
 import { Button } from 'material-ui'
 import { DatePicker } from 'material-ui-pickers'
-import {Link} from 'react-router-dom'
 import AccessAlarmIcon from 'material-ui-icons/AccessAlarm'
 import { withStyles } from 'material-ui/styles'
+
+import {addTodo} from '../reducers/actions'
 
 const styles = theme => ({
   button: {
@@ -64,29 +68,71 @@ const styles = theme => ({
   }
 });
 
-class CreateTask extends Component {
-  constructor (opt) {
-    super()
-    this.state = {
-      selectedDate: new Date(),
-      duration: ''
-    }
+const initialState = {
+    date: new Date(),
+    hour: '',
+    note: ''
   }
 
+class CreateTask extends Component {
+  state = Object.assign({}, initialState)
+
   handleDateChange = date => {
-    this.setState({selectedDate: date})
+    this.setState({date})
   }
 
   handleNumChange = event => {
-    this.setState({duration:  event.target.value})
+    this.setState({hour:  event.target.value})
+  }
+
+  handleSave = e => {
+    const {note, date, hour} = this.state
+    const entry = {
+      note,
+      date: date && date.toString(),
+      hour: +hour
+    }
+
+    if (this.validate(entry)) {
+      this.props.dispatch(addTodo(entry))
+      this.reset()
+    }
+  }
+
+  reset = () => {
+    console.log(Object.assign({}, initialState));
+    this.setState(Object.assign({}, initialState))
+  }
+
+  validate = (entry) => {
+    let isValidate = true
+    for (let i in entry) {
+      if (!entry[i]) {
+        isValidate = false
+        break;
+      }
+    }
+
+    return isValidate
+  }
+
+  handleTextChange = ({target}) => {
+    this.setState({note: target.value})
   }
 
   render () {
-    const {selectedDate} = this.state
+    const {
+      date,
+      hour,
+      note
+    } = this.state
     return (
-      <form noValidate autoComplete="off">
+      <form
+        noValidate
+        autoComplete="off"
+        onSubmit={this.handleSave}
+      >
         <h2>创建</h2>
-
         <Divider />
 
         <DatePicker
@@ -100,7 +146,7 @@ class CreateTask extends Component {
           cancelLabel="取消"
           clearLabel="清空"
           helperText="必填"
-          value={selectedDate}
+          value={date}
           onChange={this.handleDateChange}
           InputProps={{
             endAdornment: (
@@ -115,8 +161,10 @@ class CreateTask extends Component {
           style={{
             marginLeft: 10
           }}
+          value={hour}
+          required
+          error={this.required}
           label="时长"
-          value={this.state.duration}
           type="number"
           onChange={this.handleNumChange}
           helperText="必填"
@@ -128,12 +176,18 @@ class CreateTask extends Component {
 
         <TextField
           label="备注"
+          value={note}
           helperText="非必填"
           fullWidth
+          onChange={this.handleTextChange}
           margin="normal"
         />
 
-        <Button raised color="primary">
+        <Button
+          raised
+          type="submit"
+          color="primary"
+        >
           保存
         </Button>
 
@@ -150,4 +204,6 @@ class CreateTask extends Component {
   }
 }
 
-export default withStyles(styles)(CreateTask)
+CreateTask = withStyles(styles)(CreateTask)
+
+export default connect()(CreateTask)

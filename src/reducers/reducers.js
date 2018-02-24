@@ -1,7 +1,7 @@
 import {ADD_TODO} from './actions'
 
 function todoApp (state = initialState, action) {
-  switch (action.tyle) {
+  switch (action.type) {
     case ADD_TODO:
       return Object.assign({}, state, {
         todos: [
@@ -38,5 +38,7 @@ const initialState = {
     },
   ]
 }
+
+
 
 export default todoApp
